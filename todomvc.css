@@ -1,0 +1,270 @@
+* {
+  font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+[type="checkbox"] {
+  display: none;
+}
+
+.black {
+  color: #3f3f3f;
+}
+
+.hidden {
+  display: none;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+
+
+body {
+  max-width: 600px;
+  background-color: #f5f5f5;
+  font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+}
+
+header {
+  font-size: 50px;
+  color: #ead7d7;
+  text-align: center; 
+}
+
+h1 {
+  font-weight: 300;
+  margin: 20px;
+}
+
+main {
+  background-color: white;
+  box-shadow: 0 10px 22px #c5bfcc;
+  margin:0 30px;
+  color: #3f3f3f;
+  font-size: 0;
+  position: relative;
+}
+
+main > div:first-child {
+  height: 64px;
+}
+
+main > div > label {
+  height: 100%;
+  width: 46px;
+  color: #e6e6e6;
+}
+
+.input_container {
+  padding-top: 12px;
+}
+
+.input_container > input {
+  border: none;
+  outline: none;
+  font-size: 26px;
+  padding-left: 42px;
+}
+
+/*.input_container > label {
+  w
+}*/
+
+.input_container > label > input:checked {
+  color: #3f3f3f;
+}
+
+main > div > label::after {
+  content: "❯";
+  padding: 12px 20px;
+  display: inline-block;
+  transform: translateX(20px) rotate(90deg);
+  font-size: 20px;
+
+}
+
+
+#input_area::-webkit-input-placeholder {
+  font-style: italic;
+  color: #ddd;
+}
+
+main > ul {
+  box-shadow:0 -3px 6px rgba(0,0,0,0.06);
+}
+
+main > ul > li {
+  font-size: 24px;
+  padding: 12px 0 12px 8px;
+  border-bottom: 1px solid #efefef;
+  position: relative;
+}
+
+/*未选中的时候的圈圈*/
+main > ul > li  input + div  {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #eee;
+  border-radius: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+/*选中时的圈圈颜色*/
+main > ul > li input:checked + div {
+  border-color: #64d9c4;
+}
+/*勾上时的钩子伪元素*/
+main > ul > li input:checked + div::before  {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 16px;
+  border-right: 2px solid #64d9c4;
+  border-bottom: 2px solid #64d9c4;
+  transform: rotate(30deg);
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+main > ul > li > label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.todolist {
+  /*vertical-align: -2px;*/
+  /*width: 70%;*/ margin: 0 54px 0 54px;
+  display: block;
+  word-break: break-all;
+}
+
+/*打钩添加给id为todolist添加class属性中划线*/ 
+.line-through {
+  color: #ddd;
+  text-decoration-line: line-through;
+}
+
+/*叉叉*/
+
+.xx {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+main > ul > li:hover .xx::after {
+  content: "×";
+  color: #af5b5e;
+  display: inline-block;
+  padding: 0 14px;
+  float: right;
+  font-size: 30px;
+}
+
+/*叉叉 hover 变色*/
+main > ul > li::after:hover {
+  color: #934347;
+}
+
+/*底部的菜单*/
+.menu {
+  color: #999;
+  font-size: 14px;
+  padding: 14px 14px 10px;
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  /*box-shadow: 0 10px 5px 4px #999;*/
+}
+/*底部菜单的个数统计*/
+.menu > span > i {
+  font-style: normal;
+}
+
+.menu > span:first-child {
+  float: left;
+  margin-right: 70px;
+}
+/*清除 选中时的 Clear completed链接*/
+#clear_completed {
+  float: right;
+}
+
+.menu > div {
+  /*text-align: center;*/
+}
+/*底部的filter按钮*/
+.menu > div > a {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  margin: 0 4px;
+  color: #999;
+  text-decoration: none;
+}
+
+.menu > div > a:hover {
+  border: 1px solid #dfcdcd;
+  color: #999;
+}
+
+/*底部的filter按钮选中时网址的hash值也跟着改变*/
+/*.filter_select {
+  border-color: #dfcdcd;
+}*/
+
+
+#clear_completed:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+main::before {
+  content: "";
+  vertical-align: top;
+  margin-top: -16px;
+  display: inline-block;
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+  height: 17px;
+  box-shadow: 0 4px 4px -3px #dfdfdf,
+              0 4px 0 -3px #dfdfdf,
+              0 8px 0 -3px #fafafa, 
+              0 8px 5px -3px #aaa,
+              0 16px 0 -6px #fafafa,
+              0 16px 5px -6px #aaa;
+}
+
+
+
+footer {
+  margin-top: 80px;
+  text-align: center;
+  font-size: 14px;
+  color: #c5bfcc;
+}
+
+
+
+
+/*
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    line-height: 56px;
+    right: 0;
+    left: 60px;
+    
+*/

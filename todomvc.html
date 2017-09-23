@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./todomvc.css">
+  <title>Document</title>
+</head>
+<body>
+  <header><h1>todos</h1></header>
+  
+  <main>
+    <div class="input_container">
+      <label><input type="checkbox" id="select_all"></label>
+      <input class="input" id="input_area" placeholder="What needs to be done?"/>
+    </div>
+
+    <ul>
+      <!--<li><label><input class="li_checkbox" type="checkbox"><div></div></label><span class="todolist">asdfkj;alskdjf</span><span class="xx"></span></li>-->
+      <!--<li></li>-->
+    </ul>
+
+    <div class="menu">
+      <span><i>0</i> items left</span>
+      <span id="clear_completed" class="hidden">Clear completed</span>
+      <div>
+        <a id="all" href="#all" >All</a>
+        <a id="active" href="#active" >Active</a>
+        <a id="completed" href="#completed" >Completed</a>
+      </div>
+    </div>
+  
+  </main>
+  
+  <footer>
+    <p>I'm placeholder, lalalalalala</p>
+    <p>I'm placeholder, lalalalalala</p>
+    <p>I'm placeholder, lalalalalala</p>
+    <p>I'm placeholder, lalalalalala</p>
+  </footer>
+  <script>// src="./todomvc.js"
+    //var amount = 0;
+    var i = document.getElementsByTagName("i")[0];
+    var ul = document.querySelector("main > ul");
+    var todolist = document.getElementsByClassName("todolist");
+    var todolist_input = ul.getElementsByTagName("input");
+    var menu = document.getElementsByClassName("menu")[0];
+    input_area.addEventListener("keydown", function (e) {
+      if(this.value !== "" && e.key == "Enter") {
+        console.log('input down')
+        var li = document.createElement("li");
+        li.innerHTML = `<label><input class="li_checkbox" type="checkbox"><div></div></label><span class="todolist">${this.value}</span><span class="xx"></span>`;
+        ul.appendChild(li);
+        //ul.appendChild
+        this.value = "";
+        //amount++;
+        ++i.innerHTML;
+      }
+    })
+    
+    ul.addEventListener("click", function(e) {
+      if(e.target.classList.contains("xx")){
+        if(!e.target.parentElement.getElementsByTagName("input")[0].checked) {
+          --i.innerHTML;
+          
+        }
+        ul.removeChild(e.target.parentElement);
+      }
+      if(e.target.classList.contains("li_checkbox")) {
+        var todolist = e.target.parentElement.parentElement.getElementsByClassName("todolist")[0];
+        todolist.classList.toggle("line-through");
+        e.target.checked ? --i.innerHTML  : ++i.innerHTML && (select_all.checked = false, select_all.parentElement.classList.remove("black"));
+
+        }
+   
+      Array.from(todolist_input).every(x => x.checked) ? select_all.parentElement.classList.add("black") : 1; 
+      Array.from(todolist_input).some(x => x.checked) ? clear_completed.className = "" : clear_completed.className = "hidden";
+
+    }, true);
+    
+    select_all.addEventListener("change", function(e) {
+      this.parentElement.classList.toggle("black"); 
+      var todolist_input_arr = Array.from(ul.getElementsByTagName("input"))
+      if(this.checked) {
+        Array.from(todolist).forEach(x => x.classList.add("line-through"));
+        todolist_input_arr.forEach(x => x.checked = true);
+        i.innerHTML = 0;
+        if(todolist.length > 0) clear_completed.className = "";
+      } else {
+        Array.from(todolist).forEach(x => x.classList.remove("line-through"));
+        todolist_input_arr.forEach(x => x.checked = false);
+        i.innerHTML = todolist_input_arr.length;
+        clear_completed.className = "hidden";
+      }
+    })
+    
+    clear_completed.addEventListener("click", function(e){
+      Array.from(todolist_input).forEach(x => x.checked ? x.parentElement.parentElement.remove() : 1);
+    })
+    
+    var hash = function(){
+      var curr_hash = window.location.hash;
+      if(window.location.hash === "" || curr_hash === "#all") {
+        all.style.borderColor="#dfcdcd";
+        active.style.borderColor="";
+        completed.style.borderColor="";
+        Array.from(ul.getElementsByTagName("li")).forEach(x => x.classList.remove("hidden"));
+      } else if(curr_hash === "#active") {
+        active.style.borderColor="#dfcdcd";
+        all.style.borderColor="";
+        completed.style.borderColor="";
+        Array.from(todolist_input).forEach(x => x.checked ? x.parentElement.parentElement.className = "hidden" : x.parentElement.parentElement.className = "");
+      } else if(curr_hash === "#completed") {
+        completed.style.borderColor="#dfcdcd";
+        all.style.borderColor="";
+        active.style.borderColor="";
+        Array.from(todolist_input).forEach(x => x.checked ? x.parentElement.parentElement.className = "" : x.parentElement.parentElement.className = "hidden");
+      }
+      }
+    hash();
+
+    ul.addEventListener("dblclick", function(e){
+      if(e.target.classList.contains("todolist")) {
+        e.target.setAttribute("contenteditable", "");
+      } 
+    })
+
+    window.addEventListener("hashchange",hash);
+    window.addEventListener("click", hash);
+
+  </script>
+</body>
+</html>
+
